@@ -2,7 +2,11 @@ class TweetsController < ApplicationController
   # GET /tweets
   before_action :authenticate_user!, except:[:index]
   def index
-    @tweets = Tweet.all.order("created_at DESC")
+    if params[:search]
+      @tweets = Tweet.all.order("created_at DESC").where("text like ?", "%#{params[:search]}%")
+    else
+      @tweets = Tweet.all.order("created_at DESC")
+    end
   end
 
   # GET /tweets/1

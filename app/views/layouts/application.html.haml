@@ -39,6 +39,11 @@
               %li
                 %p.navbar-text
                   = current_user.email
+          %ul.nav.navbar-nav.navbar-right
+            %form.navbar-form.navbar-left
+              .form-group
+                %input.form-control.search-tweets{placeholder: "Search", type: "text"}/
+              %button.btn.btn-default.search-button{type: "submit"} Submit
             %li
               - if user_signed_in?
                 = link_to "LogOut", destroy_user_session_path, method: :delete
